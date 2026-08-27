@@ -5,7 +5,7 @@ import {
   createTrain,
   updateTrain,
   deleteTrain,
-} from "../controllers/train.controller";
+} from "../controllers/train.controller.js";
 
 const router = Router();
 

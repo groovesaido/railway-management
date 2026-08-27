@@ -4,11 +4,11 @@ import {
   getPlatformById,
   getPlatformbyStation,
   updatePlatform,
-} from "../controllers/platform.controller";
+} from "../controllers/platform.controller.js";
 import { Router } from "express";
 
-import { authenticate } from "../middlewares/auth.middleware";
-import { requireRole } from "../middlewares/requireRole";
+import { authenticate } from "../middlewares/auth.middleware.js";
+import { requireRole } from "../middlewares/requireRole.js";
 
 const router = Router({ mergeParams: true });
 router.get("/", getPlatformbyStation);

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
-import { Role } from "../generated/prisma/enums";
+import { Role } from "../generated/prisma/enums.js";
 import { Prisma } from "../generated/prisma/client.js";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
