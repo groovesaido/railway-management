@@ -4,7 +4,7 @@ import {
   getPassengerById,
   createPassenger,
   deletePassenger,
-} from "../controllers/passanger.controller";
+} from "../controllers/passanger.controller.js";
 
 const router = Router();
 

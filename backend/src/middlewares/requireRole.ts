@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { Role } from "../generated/prisma/enums";
+import { Role } from "../generated/prisma/enums.js";
 
 export const requireRole = (...roles: Role[]) => {
   return (req: Request, res: Response, next: NextFunction) => {

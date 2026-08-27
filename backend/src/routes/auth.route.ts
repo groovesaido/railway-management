@@ -3,8 +3,8 @@ import {
   loginHandler,
   logoutHandler,
   getCurrentUser,
-} from "../controllers/auth.controller";
-import { authenticate } from "../middlewares/auth.middleware";
+} from "../controllers/auth.controller.js";
+import { authenticate } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
