@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prisma } from "../lib/prisma";
+import { prisma } from "../lib/prisma.js";
 import { startOfDay, endOfDay, subDays, format } from "date-fns";
 import { TicketStatus } from "../generated/prisma/enums";
 const ACTIVE_STATUS_FILTER = {
