@@ -1,0 +1,209 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Passenger {
+  id String @id @default(uuid())
+  email String @unique
+  firstName String
+  lastName String
+  idNumber String?
+  dateOfBirth DateTime @db.Date
+  phoneNumber String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tickets Ticket[]
+}
+
+model Train{
+  id String @id @default(uuid())
+  trainNumber String @unique
+  name String 
+  type String
+  capacity Int
+  status TrainStatus @default(ACTIVE)
+  manufacturer String
+  model String
+  yearBuilt String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  schedules Schedule[]
+  ticket Ticket[]
+  maintainance Maintainance[]
+}
+model Station{
+  id String @id @default(uuid())
+  name String
+  code String @unique
+  address String
+  numberOfPlatforms Int
+  status StationStatus @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  platforms Platform[]
+  schedules Schedule[]
+  employees Employee[]
+}
+
+model Platform{
+  id String @id @default(uuid())
+  platformNumber String
+  name String
+  status PlatformStatus @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  stationId String
+  station Station @relation(fields: [stationId],references: [id])
+  schedules Schedule[]
+}
+model Route{
+  id String @id @default(uuid())
+  name String
+  origin String
+  destination String
+  distance Int
+  estimatedDuration Int
+  status String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  schedule Schedule[]
+ }
+model Schedule{
+  id String @id @default(uuid())
+  trainId String 
+  stationId String @unique
+  platformId String
+  routeId String
+  arrivalTime DateTime
+  departureTime DateTime
+  status ScheduleStatus @default(SCHEDULED)
+  delayMinutes Int
+  scheduledDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  train Train @relation(fields: [trainId], references: [id])
+  station Station @relation(fields: [stationId], references: [id])
+  platform Platform @relation(fields: [platformId], references: [id])
+  route   Route @relation(fields: [routeId], references: [id])
+  tickets Ticket[]
+}
+model Ticket{
+  id String @id @default(uuid())
+  ticketNumber String @unique
+  passangerId String
+  trainId String
+  scheduleId String
+  seatNumber Int
+  ticketClass TicketClass @default(C)
+  price Int
+  status TicketStatus @default(ACTIVE)
+  bookingTime DateTime @default(now())
+  travelDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  passanger Passenger @relation(fields: [passangerId],references: [id])
+  train Train @relation(fields: [trainId],references: [id])
+  schedule Schedule @relation(fields: [scheduleId],references: [id])
+}
+
+model User{
+id String @id @default(uuid())
+firstName String
+lastName String
+email String @unique
+hashedPassword String
+role Role @default(PASSENGER)
+phone String
+status UserStatus @default(ACTIVE)
+lastLogin DateTime?
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+}
+
+model Employee{
+id String @id @default(uuid())
+employeeNumber Int @unique
+firstName String
+lastName String
+email String
+phone String
+idNumber String
+position String
+department String
+stationId String
+hireDate DateTime
+status String
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+station Station @relation(fields: [stationId],references: [id])
+}
+
+model Maintainance{
+id String @id @default(uuid())
+trainId String
+type String
+description String
+startDate DateTime
+completionDate DateTime
+cost Int
+status String
+performedBy String
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+train Train @relation(fields: [trainId],references: [id])
+}
+enum TrainStatus {
+  ACTIVE
+  MAINTENANCE
+  DELAYED
+  CANCELLED
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+enum Role {
+  ADMIN
+  STAFF
+  PASSENGER
+}
+
+enum TicketStatus{
+  ACTIVE
+  CANCELLED
+  USED
+}
+
+enum ScheduleStatus {
+  SCHEDULED
+  ON_ROUTE
+  DELAYED
+  CANCELLED
+}
+
+enum TicketClass{
+  A
+  B
+  C
+}
+
+enum StationStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum PlatformStatus {
+  ACTIVE
+  INACTIVE
+}

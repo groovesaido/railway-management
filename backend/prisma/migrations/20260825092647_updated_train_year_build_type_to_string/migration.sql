@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Train" ALTER COLUMN "yearBuilt" SET DATA TYPE TEXT;

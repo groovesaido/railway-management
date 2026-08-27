@@ -1,0 +1,22 @@
+import { Router } from "express";
+import { authenticate } from "../middlewares/auth.middleware";
+import { requireRole } from "../middlewares/requireRole";
+
+import {
+  getStations,
+  getStationById,
+  createStation,
+  updateStadium,
+  deleteStation,
+} from "../controllers/station.controller";
+
+const router = Router();
+router.use(authenticate, requireRole("ADMIN"));
+
+router.get("/", getStations);
+router.get("/:id", getStationById);
+router.post("/", createStation);
+router.put("/:id", updateStadium);
+router.delete("/:id", deleteStation);
+
+export default router;
