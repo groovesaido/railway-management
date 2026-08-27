@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://192.168.100.50:3001/api",
     credentials: true,
   }),
 );
@@ -45,4 +45,3 @@ app.use("/api/auth/", authRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
-
