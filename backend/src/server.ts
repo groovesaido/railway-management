@@ -1,12 +1,12 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import trainRoutes from "./routes/train.routes.ts";
-import passangerRoutes from "./routes/passanger.route.ts";
-import userRoutes from "./routes/user.route.ts";
-import authRoutes from "./routes/auth.route.ts";
-import adminDashboardRoutes from "./routes/dashboard.route.ts";
-import station from "./routes/station.route.ts";
-import platform from "./routes/platform.route.ts";
+import trainRoutes from "./routes/train.routes.js";
+import passangerRoutes from "./routes/passanger.route.js";
+import userRoutes from "./routes/user.route.js";
+import authRoutes from "./routes/auth.route.js";
+import adminDashboardRoutes from "./routes/dashboard.route.js";
+import station from "./routes/station.route.js";
+import platform from "./routes/platform.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
