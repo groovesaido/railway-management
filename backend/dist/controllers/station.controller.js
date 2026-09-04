@@ -1,5 +1,6 @@
-import { prisma } from "../lib/prisma";
-import { Prisma } from "../generated/prisma/client";
+import { prisma } from "../lib/prisma.js";
+import * as prismaPkg from "../generated/prisma/client.js";
+const { Prisma } = prismaPkg;
 export const getStations = async (req, res) => {
     try {
         const stations = await prisma.station.findMany({

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getTrains, getTrainById, createTrain, updateTrain, deleteTrain, } from "../controllers/train.controller";
+import { getTrains, getTrainById, createTrain, updateTrain, deleteTrain, } from "../controllers/train.controller.js";
 const router = Router();
 router.get("/", getTrains);
 router.get("/:id", getTrainById);

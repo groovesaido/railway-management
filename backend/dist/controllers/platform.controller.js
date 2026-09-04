@@ -1,6 +1,8 @@
-import { PlatformStatus } from "../generated/prisma/enums";
-import { prisma } from "../lib/prisma";
-import { Prisma } from "../generated/prisma/client";
+import * as prismaEnums from "../generated/prisma/enums.js";
+const { PlatformStatus } = prismaEnums;
+import { prisma } from "../lib/prisma.js";
+import * as prismaPkg from "../generated/prisma/client.js";
+const { Prisma } = prismaPkg;
 // GET /api/admin/station/:stationId/platform
 export const getPlatformbyStation = async (req, res) => {
     try {

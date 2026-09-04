@@ -1,4 +1,4 @@
-import { deletePlatform, createPlatform, getPlatformById, getPlatformbyStation, updatePlatform, } from "../controllers/platform.controller";
+import { deletePlatform, createPlatform, getPlatformById, getPlatformbyStation, updatePlatform, } from "../controllers/platform.controller.js";
 import { Router } from "express";
 const router = Router({ mergeParams: true });
 router.get("/", getPlatformbyStation);

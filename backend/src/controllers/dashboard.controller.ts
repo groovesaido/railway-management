@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
 import { startOfDay, endOfDay, subDays, format } from "date-fns";
-import { TicketStatus } from "../generated/prisma/enums.js";
+import * as prismaEnums from "../generated/prisma/enums.js";
+const { TicketStatus } = prismaEnums;
 const ACTIVE_STATUS_FILTER = {
   status: { not: TicketStatus.CANCELLED },
 };

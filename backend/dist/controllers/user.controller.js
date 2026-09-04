@@ -1,5 +1,8 @@
-import { prisma } from "../lib/prisma";
-import { Prisma } from "../generated/prisma/client";
+import { prisma } from "../lib/prisma.js";
+import * as prismaEnums from "../generated/prisma/enums.js";
+const { Role } = prismaEnums;
+import * as prismaPkg from "../generated/prisma/client.js";
+const { Prisma } = prismaPkg;
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 dotenv.config();

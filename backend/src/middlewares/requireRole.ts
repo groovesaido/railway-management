@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { Role } from "../generated/prisma/enums.js";
-
+import * as prismaEnums from "../generated/prisma/enums.js";
+const { Role } = prismaEnums;
+type Role = (typeof prismaEnums)["Role"][keyof (typeof prismaEnums)["Role"]];
 export const requireRole = (...roles: Role[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.user || !roles.includes(req.user.role)) {

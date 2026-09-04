@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
-import { Prisma } from "../generated/prisma/client.js";
+import * as prismaPkg from "../generated/prisma/client.js";
+const { Prisma } = prismaPkg;
 
 //GET all passengers
 export const getPassengers = async (req: Request, res: Response) => {

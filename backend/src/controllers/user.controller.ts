@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
-import { Role } from "../generated/prisma/enums.js";
-import { Prisma } from "../generated/prisma/client.js";
+import * as prismaEnums from "../generated/prisma/enums.js";
+
+const { Role } = prismaEnums;
+type Role = (typeof prismaEnums)["Role"][keyof (typeof prismaEnums)["Role"]];
+import * as prismaPkg from "../generated/prisma/client.js";
+const { Prisma } = prismaPkg;
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 dotenv.config();

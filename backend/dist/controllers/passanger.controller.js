@@ -1,5 +1,6 @@
-import { prisma } from "../lib/prisma";
-import { Prisma } from "../generated/prisma/client";
+import { prisma } from "../lib/prisma.js";
+import * as prismaPkg from "../generated/prisma/client.js";
+const { Prisma } = prismaPkg;
 //GET all passengers
 export const getPassengers = async (req, res) => {
     try {
